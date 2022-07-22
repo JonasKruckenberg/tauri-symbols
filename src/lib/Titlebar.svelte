@@ -13,7 +13,7 @@
   <div />
 
   <div class="vstack">
-    <span style="font-weight: bold;">All</span>
+    <span style="font-weight: bold;">All </span>
     <span>4145 Symbols</span>
   </div>
 
@@ -35,13 +35,17 @@
 <style>
   header {
     width: 100vw;
-    position: sticky;
+    position: fixed;
     height: 48px;
     display: grid;
     justify-content: space-between;
     align-items: center;
     transition: box-shadow 150ms;
     grid-template-columns: 80px max-content 1fr min-content 1fr;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, .9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
 
   header > * {

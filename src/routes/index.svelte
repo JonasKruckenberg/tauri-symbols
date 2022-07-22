@@ -9,11 +9,11 @@
   // Dividing the data array length by 6 as there are 6 items per row
   let items = [...Array(Math.ceil(symbols.length / itemsPerRow)).keys()];
 
-  let end: number = Math.floor(750 / itemsPerRow);
+  let end: number
 </script>
 
 <section style={`--items-per-row: ${itemsPerRow};`}>
-  <VirtualList height="90vh" {items} let:item bind:start={$scrollPosition} bind:end>
+  <VirtualList height="98vh" {items} let:item bind:start={$scrollPosition} bind:end>
     <div class="row">
       <!-- loop for items in each row, that references 0..5, then 6..11 etc -->
       {#each Array(itemsPerRow) as _, i}
@@ -31,5 +31,9 @@
     /* gap: 1rem; */
     /* change the number in the repeat to control items per line */
     grid-template-columns: repeat(var(--items-per-row), minmax(0, 1fr));
+  }
+
+  .row:first-of-type {
+    margin-top: 48px;
   }
 </style>
