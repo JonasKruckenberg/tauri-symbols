@@ -1,17 +1,21 @@
 <script lang="ts">
+  import Interactor from "./Intersector.svelte";
   interface Icon {
     name: string;
     symbol: string;
   }
 
   export let icon: Icon;
-  export let lazy: boolean;
 </script>
 
-<div class={`icon ${lazy && "lazy"}`} data-symbol={icon.symbol}>
-  <i>{!lazy ? icon.symbol : " "}</i>
-  <span class="name">{icon.name}</span>
-</div>
+<Interactor once={true} let:intersecting>
+  {#if intersecting}
+    <div class="icon" data-symbol={icon.symbol}>
+      <i>{icon.symbol}</i>
+      <span class="name">{icon.name}</span>
+    </div>
+  {/if}
+</Interactor>
 
 <style>
   .icon {
