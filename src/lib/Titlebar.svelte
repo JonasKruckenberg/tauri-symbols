@@ -33,6 +33,15 @@
 </header>
 
 <style>
+  :root {
+    --titlebar-background: rgba(242, 242, 247, 0.9);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --titlebar-background: rgba(28, 28, 30, 0.9);
+    }
+  }
   header {
     width: 100vw;
     position: fixed;
@@ -43,8 +52,8 @@
     transition: box-shadow 150ms;
     grid-template-columns: 80px max-content 1fr min-content 1fr;
     z-index: 100;
-    background-color: rgba(255, 255, 255, .9);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--titlebar-background);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(10px);
   }
 
