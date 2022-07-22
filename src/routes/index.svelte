@@ -1,39 +1,50 @@
 <script lang="ts">
-  import VirtualList from "../lib/VirtualList.svelte";
   import Icon from "../lib/Icon.svelte";
   import symbols from "../assets/data.json";
-  import { scrollPosition } from '../stores/scroll-position'
+  import { onDestroy, onMount } from "svelte";
 
-  let itemsPerRow = 7;
-  // New array that contains numbers 1..n
-  // Dividing the data array length by 6 as there are 6 items per row
-  let items = [...Array(Math.ceil(symbols.length / itemsPerRow)).keys()];
+  let lazyIconObserver: IntersectionObserver;
 
-  let end: number
+  onMount(() => {
+    const lazyIcons = [].slice.call(document.querySelectorAll(".icon.lazy"));
+
+    lazyIconObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let lazyIcon = entry.target;
+          lazyIcon.classList.remove("lazy");
+          lazyIcon.children[0].textContent = lazyIcon.dataset.symbol
+          lazyIconObserver.unobserve(lazyIcon);
+        }
+      });
+    }, { rootMargin: '800px' });
+
+    lazyIcons.forEach((lazyIcon) => {
+      lazyIconObserver.observe(lazyIcon);
+    });
+  });
+
+  onDestroy(() => {
+    if (lazyIconObserver) lazyIconObserver.disconnect();
+  });
+
+  const aboveFold = 48
 </script>
 
-<section style={`--items-per-row: ${itemsPerRow};`}>
-  <VirtualList height="98vh" {items} let:item bind:start={$scrollPosition} bind:end>
-    <div class="row">
-      <!-- loop for items in each row, that references 0..5, then 6..11 etc -->
-      {#each Array(itemsPerRow) as _, i}
-        {#if symbols[item * itemsPerRow + i]}
-          <Icon icon={symbols[item * itemsPerRow + i]} />
-        {/if}
-      {/each}
-    </div>
-  </VirtualList>
+<section id="root">
+  {#each symbols as symbol, i}
+    <Icon icon={symbol} lazy={i > aboveFold}/>
+  {/each}
 </section>
 
 <style>
-  .row {
+  section {
     display: grid;
-    /* gap: 1rem; */
-    /* change the number in the repeat to control items per line */
-    grid-template-columns: repeat(var(--items-per-row), minmax(0, 1fr));
-  }
-
-  .row:first-of-type {
-    margin-top: 48px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-rows: minmax(min-content, 9em);
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 0 3em;
+    padding-top: 48px;
   }
 </style>
