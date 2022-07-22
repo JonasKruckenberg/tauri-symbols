@@ -1,9 +1,13 @@
 <script lang="ts">
-  import symbols from "../assets/data.json";
   import { scrollPosition } from "../stores/scroll-position";
-  let symbolCount = symbols.length;
+  import { getContext } from "svelte";
+
+  const { getSymbols } = getContext("symbols");
+  const symbols = getSymbols();
 
   export let fontWeight = 400;
+  export let fontColor;
+  let numberOfSymbols: number = symbols.length;
 </script>
 
 <header
@@ -15,11 +19,13 @@
   <!-- Leading edge -->
   <div class="vstack">
     <span style="font-weight: bold;">All </span>
-    <span>{Intl.NumberFormat().format(symbolCount)} Symbols</span>
+    <span>{Intl.NumberFormat().format(numberOfSymbols)} Symbols</span>
   </div>
 
   <!-- Trailing edge -->
   <div class="trailing">
+    <label for="colorpicker">Color Picker:</label>
+    <input type="color" id="colorpicker" value="#ffffff" />
     <label for="font-weight">Symbol Weight</label>
     <select bind:value={fontWeight} id="font-weight">
       <option value={100}>Thin</option>

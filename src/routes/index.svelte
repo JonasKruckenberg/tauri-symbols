@@ -1,6 +1,8 @@
 <script lang="ts">
   import Icon from "../lib/Icon.svelte";
-  import symbols from "../assets/data.json";
+  import { getContext } from "svelte";
+  const { getSymbols } = getContext("symbols");
+  const symbols = getSymbols();
 </script>
 
 <section id="root">
