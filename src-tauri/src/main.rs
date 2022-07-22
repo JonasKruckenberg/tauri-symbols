@@ -7,10 +7,9 @@ use tauri::{TitleBarStyle, WindowBuilder};
 
 fn main() {
     tauri::Builder::default()
-        // .plugin(tauri_plugin_window_state::Builder::default().build())
         .setup(|app| {
             WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
-                .inner_size(800.0, 600.0)
+                .inner_size(1000.0, 600.0)
                 .visible(false)
                 .title("")
                 .hidden_title(true)

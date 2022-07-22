@@ -2,11 +2,9 @@
   "name": "my-app",
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "package": "svelte-kit package",
+    "dev": "tauri dev",
+    "build": "tauri build",
     "preview": "vite preview",
-    "prepare": "svelte-kit sync",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },

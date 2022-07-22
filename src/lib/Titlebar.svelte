@@ -10,6 +10,15 @@
     ? `box-shadow: 0px 6px 4px -6px rgba(0, 0, 0, 0.1)`
     : ""}
 >
+  <div />
+
+  <div class="vstack">
+    <span style="font-weight: bold;">All</span>
+    <span>4145 Symbols</span>
+  </div>
+
+  <div />
+
   <select bind:value={fontWeight}>
     <option value={100}>Thin</option>
     <option value={200}>Ultra Light</option>
@@ -28,10 +37,16 @@
     width: 100vw;
     position: sticky;
     height: 48px;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    justify-content: space-between;
     align-items: center;
     transition: box-shadow 150ms;
+    grid-template-columns: 80px max-content 1fr min-content 1fr;
+  }
+
+  header > * {
+    user-select: none;
+    pointer-events: none;
   }
 
   select {
@@ -40,5 +55,12 @@
 
   select:focus {
     outline: none;
+  }
+
+  .vstack {
+    font-size: .9rem;
+    line-height: .9rem;
+    display: flex;
+    flex-direction: column;
   }
 </style>

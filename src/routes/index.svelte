@@ -28,7 +28,7 @@
 <style>
   .row {
     display: grid;
-    gap: 1rem;
+    /* gap: 1rem; */
     /* change the number in the repeat to control items per line */
     grid-template-columns: repeat(var(--items-per-row), minmax(0, 1fr));
   }
