@@ -24,8 +24,8 @@
 
   <!-- Trailing edge -->
   <div class="trailing">
-    <label for="colorpicker">Color Picker:</label>
-    <input type="color" id="colorpicker" value="#ffffff" />
+    <!-- <label for="colorpicker">Color Picker:</label>
+    <input type="color" id="colorpicker" value="#ffffff" /> -->
     <label for="font-weight">Symbol Weight</label>
     <select bind:value={fontWeight} id="font-weight">
       <option value={100}>Thin</option>
