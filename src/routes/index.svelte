@@ -11,13 +11,15 @@
 
 <style>
   section {
+    --padding-top: 48px;
+    --padding-bottom: 3em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    grid-auto-rows: minmax(min-content, 9em);
     gap: 1.5rem;
-    height: 100vh;
+    height: calc(100vh - var(--padding-top) - var(--padding-bottom));
     overflow-y: scroll;
     padding: 0 3em;
-    padding-top: 48px;
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
   }
 </style>
