@@ -23,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    text-align: center;
   }
 
   .icon > i {
