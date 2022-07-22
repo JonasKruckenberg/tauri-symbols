@@ -57,11 +57,8 @@ checksum = "bb07d2053ccdbe10e2af2995a2f116c1330396493dc1269f6a91d0ae82e19704"
 name = "app"
 version = "0.1.0"
 dependencies = [
- "serde",
- "serde_json",
- "tauri 1.0.3",
+ "tauri",
  "tauri-build",
- "tauri-plugin-window-state",
 ]
 
 [[package]]
@@ -99,15 +96,6 @@ name = "base64"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
-
-[[package]]
-name = "bincode"
-version = "1.3.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b1f45e9417d87227c7a56d22e471c6206462cba514c7590c09aff4cf6d1ddcad"
-dependencies = [
- "serde",
-]
 
 [[package]]
 name = "bitflags"
@@ -2451,55 +2439,10 @@ dependencies = [
  "serialize-to-javascript",
  "state",
  "tar",
- "tauri-macros 1.0.3",
- "tauri-runtime 0.10.2 (git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar)",
- "tauri-runtime-wry 0.10.2 (git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar)",
+ "tauri-macros",
+ "tauri-runtime",
+ "tauri-runtime-wry",
  "tauri-utils 1.0.3 (git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar)",
- "tempfile",
- "thiserror",
- "tokio",
- "url",
- "uuid 1.1.2",
- "webkit2gtk",
- "webview2-com",
- "windows 0.37.0",
-]
-
-[[package]]
-name = "tauri"
-version = "1.0.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "827f61bd3dd40276694be5c7ffc40d65b94ab00d9f8c1a4a4db07f2cdc306c83"
-dependencies = [
- "anyhow",
- "cocoa",
- "dirs-next",
- "embed_plist",
- "flate2",
- "futures",
- "futures-lite",
- "glib",
- "glob",
- "gtk",
- "heck 0.4.0",
- "http",
- "ignore",
- "objc",
- "once_cell",
- "percent-encoding",
- "rand 0.8.5",
- "raw-window-handle",
- "semver 1.0.12",
- "serde",
- "serde_json",
- "serde_repr",
- "serialize-to-javascript",
- "state",
- "tar",
- "tauri-macros 1.0.4",
- "tauri-runtime 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "tauri-runtime-wry 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "tauri-utils 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "tempfile",
  "thiserror",
  "tokio",
@@ -2551,31 +2494,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tauri-codegen"
-version = "1.0.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "16d62a3c8790d6cba686cea6e3f7f569d12c662c3274c2d165a4fd33e3871b72"
-dependencies = [
- "base64",
- "brotli",
- "ico",
- "json-patch",
- "plist",
- "png 0.17.5",
- "proc-macro2",
- "quote",
- "semver 1.0.12",
- "serde",
- "serde_json",
- "sha2",
- "tauri-utils 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "thiserror",
- "time",
- "uuid 1.1.2",
- "walkdir",
-]
-
-[[package]]
 name = "tauri-macros"
 version = "1.0.3"
 source = "git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar#5c2072610dcbdd33436b19c186240ea8105d123e"
@@ -2584,53 +2502,8 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
- "tauri-codegen 1.0.3",
+ "tauri-codegen",
  "tauri-utils 1.0.3 (git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar)",
-]
-
-[[package]]
-name = "tauri-macros"
-version = "1.0.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7296fa17996629f43081e1c66d554703900187ed900c5bf46f97f0bcfb069278"
-dependencies = [
- "heck 0.4.0",
- "proc-macro2",
- "quote",
- "syn",
- "tauri-codegen 1.0.4",
- "tauri-utils 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "tauri-plugin-window-state"
-version = "0.1.0"
-source = "git+https://github.com/tauri-apps/tauri-plugin-window-state#a10a3defb4a5a82c62f2d06773979924a95b69e6"
-dependencies = [
- "bincode",
- "serde",
- "tauri 1.0.4",
- "thiserror",
-]
-
-[[package]]
-name = "tauri-runtime"
-version = "0.10.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4e4cff3b4d9469727fa2107c4b3d2eda110df1ba45103fb420178e536362fae4"
-dependencies = [
- "gtk",
- "http",
- "http-range",
- "infer",
- "raw-window-handle",
- "serde",
- "serde_json",
- "tauri-utils 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "thiserror",
- "uuid 1.1.2",
- "webview2-com",
- "windows 0.37.0",
 ]
 
 [[package]]
@@ -2655,26 +2528,6 @@ dependencies = [
 [[package]]
 name = "tauri-runtime-wry"
 version = "0.10.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fa8c4edaf01d8b556e7172c844b1b4dd3399adcd1a606bd520fc3e65f698546"
-dependencies = [
- "cocoa",
- "gtk",
- "percent-encoding",
- "rand 0.8.5",
- "raw-window-handle",
- "tauri-runtime 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "tauri-utils 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "uuid 1.1.2",
- "webkit2gtk",
- "webview2-com",
- "windows 0.37.0",
- "wry",
-]
-
-[[package]]
-name = "tauri-runtime-wry"
-version = "0.10.2"
 source = "git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar#5c2072610dcbdd33436b19c186240ea8105d123e"
 dependencies = [
  "cocoa",
@@ -2682,7 +2535,7 @@ dependencies = [
  "percent-encoding",
  "rand 0.8.5",
  "raw-window-handle",
- "tauri-runtime 0.10.2 (git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar)",
+ "tauri-runtime",
  "tauri-utils 1.0.3 (git+https://github.com/tauri-apps/tauri?branch=macos-transparent-titlebar)",
  "uuid 1.1.2",
  "webkit2gtk",
@@ -2697,7 +2550,6 @@ version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "12ff4b68d9faeb57c9c727bf58c9c9768d2b67d8e84e62ce6146e7859a2e9c6b"
 dependencies = [
- "brotli",
  "ctor",
  "glob",
  "heck 0.4.0",
