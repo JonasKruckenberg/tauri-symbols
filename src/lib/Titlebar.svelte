@@ -51,6 +51,7 @@
 
   select {
     font-size: 1.2em;
+    pointer-events: all;
   }
 
   select:focus {
@@ -58,8 +59,8 @@
   }
 
   .vstack {
-    font-size: .9rem;
-    line-height: .9rem;
+    font-size: 0.9rem;
+    line-height: 0.9rem;
     display: flex;
     flex-direction: column;
   }
