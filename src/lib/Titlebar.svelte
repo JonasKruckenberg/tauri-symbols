@@ -1,5 +1,7 @@
 <script lang="ts">
+  import symbols from "../assets/data.json";
   import { scrollPosition } from "../stores/scroll-position";
+  let symbolCount = symbols.length;
 
   export let fontWeight = 400;
 </script>
@@ -14,7 +16,7 @@
 
   <div class="vstack">
     <span style="font-weight: bold;">All </span>
-    <span>4145 Symbols</span>
+    <span>{Intl.NumberFormat().format(symbolCount)} Symbols</span>
   </div>
 
   <div />
@@ -73,7 +75,7 @@
 
   .vstack {
     font-size: 0.9rem;
-    line-height: 0.9rem;
+    line-height: 1.1rem;
     display: flex;
     flex-direction: column;
   }
