@@ -28,7 +28,7 @@
     width: 2em;
     height: 2em;
     line-height: 2em;
-    border: 1px solid lightgray;
+    border: 1px solid var(--border-color);
     border-radius: 0.15em;
     font-weight: var(--font-weight);
   }
@@ -39,5 +39,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon > i {
+      border: 1px solid var(--border-color);
+    }
   }
 </style>

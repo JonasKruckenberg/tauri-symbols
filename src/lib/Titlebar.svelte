@@ -7,35 +7,41 @@
   export let fontColor;
 
   function handleSearch(pattern: string) {
-    let promise: Promise<Icon[]>
+    let promise: Promise<Icon[]>;
     if (pattern.trim().length == 0) {
       promise = invoke<Icon[]>("all");
     } else {
-      promise =  invoke<Icon[]>("search", { pattern });
+      promise = invoke<Icon[]>("search", { pattern });
     }
 
     promise
       .then((data) => icons.set(data))
-      // this request can only fail upon invalid regex input. 
+      // this request can only fail upon invalid regex input.
       // Because entering invalid regex will inevitably happen during typing we ignore the error
       // TODO: Give some visual feedback when searching failed
-      .catch(e => console.warn(e))
+      .catch((e) => console.warn(e));
   }
 </script>
 
 <header data-tauri-drag-region>
   <!-- Leading edge -->
-  <div class="vstack">
+  <div style="grid-area: info" class="vstack">
     <span style="font-weight: bold;">All </span>
     <span>{Intl.NumberFormat().format($icons.length)} Symbols</span>
   </div>
 
-  <!-- Trailing edge -->
-  <div class="trailing">
-    <input type="text" on:input={(event) => handleSearch(event.target.value)} />
-    <!-- <label for="colorpicker">Color Picker:</label>
-    <input type="color" id="colorpicker" value="#ffffff" /> -->
-    <label for="font-weight">Symbol Weight</label>
+  <label for="search" style="grid-area: search">
+    􀊫
+    <input
+      id="search"
+      type="search"
+      autocomplete="off"
+      placeholder="Search"
+      on:input={(event) => handleSearch(event.target.value)}
+    />
+  </label>
+  <label for="font-weight" style="grid-area: font-size"
+    >Symbol Weight
     <select bind:value={fontWeight} id="font-weight">
       <option value={100}>Thin</option>
       <option value={200}>Ultra Light</option>
@@ -47,33 +53,38 @@
       <option value={800}>Heavy</option>
       <option value={900}>Black</option>
     </select>
-  </div>
+  </label>
 </header>
 
 <style>
   :root {
-    --titlebar-background: rgba(242, 242, 247, 0.9);
+    --titlebar-background: rgba(246, 241, 249, 0.9);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --titlebar-background: rgba(28, 28, 30, 0.9);
-    }
-  }
   header {
     width: 100vw;
     position: fixed;
-    display: flex;
-    justify-content: space-between;
     height: 52px;
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+    grid-template-areas: ". info . font-size search";
+    gap: 0.75em;
     align-items: center;
-    transition: box-shadow 150ms;
+    transition: box-shadow 150ms, background-color 150ms;
     z-index: 100;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.13);
     background-color: var(--titlebar-background);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(10px);
     font-size: 0.9rem;
     line-height: 1.1rem;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .vstack {
+    display: flex;
+    flex-direction: column;
   }
 
   header > * {
@@ -81,18 +92,9 @@
     pointer-events: none;
   }
 
-  select, input {
+  select,
+  input {
     pointer-events: all;
-  }
-
-  .vstack {
-    display: flex;
-    flex-direction: column;
-    padding-left: 80px;
-  }
-
-  .trailing {
-    padding-right: 2rem;
   }
 
   select {
@@ -101,5 +103,39 @@
 
   select:focus {
     outline: none;
+  }
+
+  label[for="search"] {
+    border: 1px solid var(--border-color);
+    padding: 0 0.5em;
+    border-radius: 7px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    color: rgb(115, 115, 115);
+  }
+
+  input[type="search"] {
+    font-size: .8rem;
+    background-color: transparent;
+    border: none;
+  }
+
+  input[type="search"]::placeholder {
+    font-weight: 500;
+  }
+
+  input[type="search"]:focus {
+    outline: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --titlebar-background: rgba(55, 51, 58, 0.9);
+    }
+
+    header {
+      box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+    }
   }
 </style>

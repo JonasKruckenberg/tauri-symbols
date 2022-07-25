@@ -3,7 +3,7 @@
   import { icons } from "../stores/icons";
 </script>
 
-<section id="root">
+<section>
   {#each $icons as icon}
     <Icon {icon} />
   {/each}
@@ -18,6 +18,7 @@
     gap: 1.5rem;
     height: calc(100vh - var(--padding-top) - var(--padding-bottom));
     overflow-y: scroll;
+    scroll-behavior: smooth;
     padding: 0 3em;
     padding-top: var(--padding-top);
     padding-bottom: var(--padding-bottom);
