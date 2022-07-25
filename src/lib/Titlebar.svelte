@@ -2,7 +2,6 @@
   import { invoke } from "@tauri-apps/api/tauri";
   import { icons } from "../stores/icons";
   import type { Icon } from "../stores/icons";
-  import { scrollPosition } from "../stores/scroll-position";
 
   export let fontWeight = 400;
   export let fontColor;
@@ -24,12 +23,7 @@
   }
 </script>
 
-<header
-  data-tauri-drag-region
-  style={$scrollPosition && $scrollPosition > 0
-    ? `box-shadow: 0px 6px 4px -6px rgba(0, 0, 0, 0.1)`
-    : ""}
->
+<header data-tauri-drag-region>
   <!-- Leading edge -->
   <div class="vstack">
     <span style="font-weight: bold;">All </span>
