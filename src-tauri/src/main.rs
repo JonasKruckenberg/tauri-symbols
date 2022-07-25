@@ -3,6 +3,7 @@
     windows_subsystem = "windows"
 )]
 
+use cached::proc_macro::cached;
 use fst::{IntoStreamer, Map, Streamer};
 use regex_automata::dfa::dense;
 use serde::{Serialize, Serializer};
@@ -29,8 +30,8 @@ impl Serialize for Error {
     }
   }
   
-
 #[tauri::command]
+#[cached(result = true, size = 50, key = "String", convert = r##"{ format!("{}", pattern) }"##)]
 fn search(map: State<'_, Map<&[u8]>>, pattern: &str) -> Result<Vec<Icon>, Error> {
     let dfa = dense::Builder::new().build(pattern)?;
     let mut stream = map.search(&dfa).into_stream();
