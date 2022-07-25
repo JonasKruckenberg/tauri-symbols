@@ -14,7 +14,7 @@
     --padding-top: 58px;
     --padding-bottom: 3em;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     gap: 1.5rem;
     height: calc(100vh - var(--padding-top) - var(--padding-bottom));
     overflow-y: scroll;
