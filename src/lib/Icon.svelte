@@ -1,16 +1,13 @@
 <script lang="ts">
-  interface Icon {
-    name: string;
-    symbol: string;
-  }
+  import type { Icon } from "../stores/icons";
 
   export let icon: Icon;
-  export let lazy: boolean
+  export let lazy: boolean;
 </script>
 
-<div class={`icon ${lazy && 'lazy'}`} data-symbol={icon.symbol}>
-  <i>{!lazy ? icon.symbol: ' '}</i>
-  <span class="name">{icon.name}</span>
+<div class={`icon ${lazy && "lazy"}`} data-symbol={icon[1]}>
+  <i>{!lazy ? icon[1] : " "}</i>
+  <span class="name">{icon[0]}</span>
 </div>
 
 <style>
@@ -19,8 +16,6 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    /* height: 12rem; */
-    /* max-height: 12rem; */
   }
 
   .icon > i {

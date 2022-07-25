@@ -1,10 +1,11 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "pnpm vite build",
+    "beforeBuildCommand": "pnpm vite build && rm build/manifest.json",
     "beforeDevCommand": "pnpm vite dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../build"
+    "distDir": "../build",
+    "withGlobalTauri": true
   },
   "package": {
     "productName": "tauri-symbols",
@@ -46,7 +47,7 @@
       },
       "resources": [],
       "shortDescription": "",
-      "targets": "all",
+      "targets": "app",
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",

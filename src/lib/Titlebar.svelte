@@ -1,7 +1,18 @@
 <script lang="ts">
+  import { invoke } from "@tauri-apps/api/tauri";
+  import { icons } from "../stores/icons";
+  import type { Icon } from "../stores/icons";
   import { scrollPosition } from "../stores/scroll-position";
 
   export let fontWeight = 400;
+
+  function handleSearch(pattern: string) {
+    if (pattern.trim().length == 0) {
+      invoke<Icon[]>("all").then((data) => icons.set(data));
+    } else {
+      invoke<Icon[]>("search", { pattern }).then((data) => icons.set(data));
+    }
+  }
 </script>
 
 <header
@@ -18,6 +29,8 @@
   </div>
 
   <div />
+
+  <input type="text" on:input={(event) => handleSearch(event.target.value)} />
 
   <select bind:value={fontWeight}>
     <option value={100}>Thin</option>
@@ -43,7 +56,7 @@
     transition: box-shadow 150ms;
     grid-template-columns: 80px max-content 1fr min-content 1fr;
     z-index: 100;
-    background-color: rgba(255, 255, 255, .9);
+    background-color: rgba(255, 255, 255, 0.9);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
@@ -53,9 +66,13 @@
     pointer-events: none;
   }
 
+  select,
+  input {
+    pointer-events: all;
+  }
+
   select {
     font-size: 1.2em;
-    pointer-events: all;
   }
 
   select:focus {
