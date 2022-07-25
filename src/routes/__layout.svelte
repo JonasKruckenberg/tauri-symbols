@@ -11,17 +11,10 @@
   }
 
   let fontWeight = 400;
+  let fontColor = "#ffffff";
 </script>
 
-<Titlebar bind:fontWeight />
+<Titlebar bind:fontWeight bind:fontColor />
 <main style={`--font-weight: ${fontWeight}`}>
-  <slot/>
+  <slot />
 </main>
-
-<style>
-  main {
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
-  }
-</style>
