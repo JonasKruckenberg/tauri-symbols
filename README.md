@@ -2,7 +2,8 @@
 
 A rudimentary clone of Apple's [SF Symbols app]. Because you can use all SF Symbols as icons in your Tauri app!
 
-![Screenshot of the app, showing a grid of icons with their associated labels](./Screenshot.png)
+![Screenshot of the app, showing a grid of icons with their associated labels](./Screenshot-light.png#gh-light-mode-only)
+![Screenshot of the app, showing a grid of icons with their associated labels](./Screenshot-dark.png#gh-dark-mode-only)
 
 ## Contributing
 
