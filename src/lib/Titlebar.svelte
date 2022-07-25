@@ -5,12 +5,8 @@
   import { scrollPosition } from "../stores/scroll-position";
   import { getContext } from "svelte";
 
-  const { getSymbols } = getContext("symbols");
-  const symbols = getSymbols();
-
   export let fontWeight = 400;
   export let fontColor;
-  let numberOfSymbols: number = symbols.length;
 
   function handleSearch(pattern: string) {
     if (pattern.trim().length == 0) {
@@ -30,7 +26,7 @@
   <!-- Leading edge -->
   <div class="vstack">
     <span style="font-weight: bold;">All </span>
-    <span>{Intl.NumberFormat().format(numberOfSymbols)} Symbols</span>
+    <span>{Intl.NumberFormat().format($icons.length)} Symbols</span>
   </div>
 
   <!-- Trailing edge -->
@@ -82,6 +78,10 @@
   header > * {
     user-select: none;
     pointer-events: none;
+  }
+
+  select, input {
+    pointer-events: all;
   }
 
   .vstack {
