@@ -3,17 +3,24 @@
   import { icons } from "../stores/icons";
   import type { Icon } from "../stores/icons";
   import { scrollPosition } from "../stores/scroll-position";
-  import { getContext } from "svelte";
 
   export let fontWeight = 400;
   export let fontColor;
 
   function handleSearch(pattern: string) {
+    let promise: Promise<Icon[]>
     if (pattern.trim().length == 0) {
-      invoke<Icon[]>("all").then((data) => icons.set(data));
+      promise = invoke<Icon[]>("all");
     } else {
-      invoke<Icon[]>("search", { pattern }).then((data) => icons.set(data));
+      promise =  invoke<Icon[]>("search", { pattern });
     }
+
+    promise
+      .then((data) => icons.set(data))
+      // this request can only fail upon invalid regex input. 
+      // Because entering invalid regex will inevitably happen during typing we ignore the error
+      // TODO: Give some visual feedback when searching failed
+      .catch(e => console.warn(e))
   }
 </script>
 
