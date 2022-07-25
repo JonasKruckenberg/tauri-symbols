@@ -12,10 +12,17 @@ rust-version = "1.57"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
+fst = "0.4.7"
+serde = { version = "1.0.140", features = ["derive"] }
+serde_json = "1.0.82"
 tauri-build = { version = "1.0.4", features = [] }
+
 
 [dependencies]
 tauri = { git = "https://github.com/tauri-apps/tauri", branch = "macos-transparent-titlebar", features = ["window-maximize", "window-show", "window-start-dragging", "window-unmaximize"] }
+fst = { version = "0.4.7"}
+regex-automata = { version = "0.2.0", features = ["transducer"] }
+serde = { version = "1.0.140", features = ["derive"] }
 
 [features]
 # by default Tauri runs in production mode
@@ -31,3 +38,4 @@ incremental = false
 lto = true
 opt-level = "s"
 panic = "abort"
+strip = true

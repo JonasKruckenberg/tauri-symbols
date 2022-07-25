@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { invoke } from "@tauri-apps/api/tauri";
+  import { icons } from "../stores/icons";
+  import type { Icon } from "../stores/icons";
   import { scrollPosition } from "../stores/scroll-position";
   import { getContext } from "svelte";
 
@@ -8,6 +11,14 @@
   export let fontWeight = 400;
   export let fontColor;
   let numberOfSymbols: number = symbols.length;
+
+  function handleSearch(pattern: string) {
+    if (pattern.trim().length == 0) {
+      invoke<Icon[]>("all").then((data) => icons.set(data));
+    } else {
+      invoke<Icon[]>("search", { pattern }).then((data) => icons.set(data));
+    }
+  }
 </script>
 
 <header
@@ -24,6 +35,7 @@
 
   <!-- Trailing edge -->
   <div class="trailing">
+    <input type="text" on:input={(event) => handleSearch(event.target.value)} />
     <!-- <label for="colorpicker">Color Picker:</label>
     <input type="color" id="colorpicker" value="#ffffff" /> -->
     <label for="font-weight">Symbol Weight</label>
@@ -84,7 +96,6 @@
 
   select {
     font-size: 1.2em;
-    pointer-events: all;
   }
 
   select:focus {

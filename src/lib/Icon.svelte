@@ -1,18 +1,15 @@
 <script lang="ts">
   import Interactor from "./Intersector.svelte";
-  interface Icon {
-    name: string;
-    symbol: string;
-  }
+  import type {Icon} from '../stores/icons'
 
   export let icon: Icon;
 </script>
 
 <Interactor once={true} let:intersecting>
   {#if intersecting}
-    <div class="icon" data-symbol={icon.symbol}>
-      <i>{icon.symbol}</i>
-      <span class="name">{icon.name}</span>
+    <div class="icon" data-symbol={icon[1]}>
+      <i>{icon[1]}</i>
+      <span class="name">{icon[0]}</span>
     </div>
   {/if}
 </Interactor>

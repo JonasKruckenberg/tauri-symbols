@@ -1,13 +1,11 @@
 <script lang="ts">
   import Icon from "../lib/Icon.svelte";
-  import { getContext } from "svelte";
-  const { getSymbols } = getContext("symbols");
-  const symbols = getSymbols();
+  import { icons } from "../stores/icons";
 </script>
 
 <section id="root">
-  {#each symbols as symbol}
-    <Icon icon={symbol} />
+  {#each $icons as icon}
+    <Icon {icon} />
   {/each}
 </section>
 
