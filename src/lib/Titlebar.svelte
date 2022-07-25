@@ -69,9 +69,9 @@
   header {
     width: 100vw;
     position: fixed;
-    height: 48px;
     display: flex;
     justify-content: space-between;
+    height: 52px;
     align-items: center;
     transition: box-shadow 150ms;
     z-index: 100;

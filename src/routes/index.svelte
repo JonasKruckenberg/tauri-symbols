@@ -11,7 +11,7 @@
 
 <style>
   section {
-    --padding-top: 58px;
+    --padding-top: 62px;
     --padding-bottom: 3em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
