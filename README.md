@@ -5,6 +5,10 @@ A rudimentary clone of Apple's [SF Symbols app]. Because you can use all SF Symb
 ![Screenshot of the app, showing a grid of icons with their associated labels](./Screenshot-light.png#gh-light-mode-only)
 ![Screenshot of the app, showing a grid of icons with their associated labels](./Screenshot-dark.png#gh-dark-mode-only)
 
+## Sponsoring
+
+Are you enjoying these fun little projects? Become a [GitHub sponsor] to help me keep going with this!
+
 ## Contributing
 
 This project uses [pnpm] as its package manager and [sveltekit] as its frontend stack. 
@@ -32,3 +36,4 @@ pnpm build
 [SF Symbols app]: https://developer.apple.com/sf-symbols/
 [pnpm]: https://pnpm.io
 [sveltekit]: https://kit.svelte.dev/
+[Sponsor me on GitHub]: https://github.com/sponsors/JonasKruckenberg
