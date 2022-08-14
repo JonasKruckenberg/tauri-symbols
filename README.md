@@ -25,6 +25,10 @@ To create a production version of your app:
 pnpm build
 ```
 
+## License
+
+[MIT © Jonas Kruckenberg.](./LICENSE)
+
 [SF Symbols app]: https://developer.apple.com/sf-symbols/
 [pnpm]: https://pnpm.io
 [sveltekit]: https://kit.svelte.dev/
