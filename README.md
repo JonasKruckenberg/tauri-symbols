@@ -36,4 +36,4 @@ pnpm build
 [SF Symbols app]: https://developer.apple.com/sf-symbols/
 [pnpm]: https://pnpm.io
 [sveltekit]: https://kit.svelte.dev/
-[Sponsor me on GitHub]: https://github.com/sponsors/JonasKruckenberg
+[GitHub sponsor]: https://github.com/sponsors/JonasKruckenberg
