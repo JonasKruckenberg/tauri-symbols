@@ -7,7 +7,7 @@ A rudimentary clone of Apple's [SF Symbols app]. Because you can use all SF Symb
 
 ## Sponsoring
 
-Are you enjoying these fun little projects? Become a [GitHub sponsor] to help me keep going with this!
+Are you enjoying these fun little projects? Become a [GitHub sponsor] to help me keep going!
 
 ## Contributing
 
