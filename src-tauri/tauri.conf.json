@@ -55,7 +55,11 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": {
+        "default-src": "'none'",
+        "style-src": "'self'"
+      },
+      "freezePrototype": true
     },
     "updater": {
       "active": false
