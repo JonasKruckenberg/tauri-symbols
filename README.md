@@ -1,4 +1,8 @@
-# tauri-symbols
+<p align="center">
+  <img src="./src-tauri/icons/128x128@2x.png" width="90">
+</p>
+<h3 align="center">Tauri Symbols</h3>
+<br/>
 
 A rudimentary clone of Apple's [SF Symbols app]. Because you can use all SF Symbols as icons in your Tauri app!
 
