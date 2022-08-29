@@ -2,9 +2,7 @@
   import { invoke } from "@tauri-apps/api/tauri";
   import { icons } from "../stores/icons";
   import type { Icon } from "../stores/icons";
-
-  export let fontWeight = 400;
-  export let fontColor;
+  import { fontWeight } from '../stores/font-weight'
 
   function handleSearch(pattern: string) {
     let promise: Promise<Icon[]>;
@@ -25,12 +23,12 @@
 
 <header data-tauri-drag-region>
   <!-- Leading edge -->
-  <div style="grid-area: info" class="vstack">
-    <span style="font-weight: bold;">All </span>
+  <div id="area-info" class="vstack">
+    <span class="bold">All </span>
     <span>{Intl.NumberFormat().format($icons.length)} Symbols</span>
   </div>
 
-  <label for="search" style="grid-area: search">
+  <label for="search" id="area-search">
     􀊫
     <input
       id="search"
@@ -40,9 +38,9 @@
       on:input={(event) => handleSearch(event.target.value)}
     />
   </label>
-  <label for="font-weight" style="grid-area: font-size"
+  <label for="font-weight" id="area-font-size"
     >Symbol Weight
-    <select bind:value={fontWeight} id="font-weight">
+    <select bind:value={$fontWeight} id="font-weight">
       <option value={100}>Thin</option>
       <option value={200}>Ultra Light</option>
       <option value={300}>Light</option>
@@ -80,6 +78,20 @@
     line-height: 1.1rem;
     padding: 0 10px;
     box-sizing: border-box;
+  }
+
+  #area-info {
+    grid-area: info;
+  }
+  #area-search {
+    grid-area: search;
+  }
+  #area-font-size {
+    grid-area: font-size;
+  }
+
+  .bold {
+    font-weight: bold;
   }
 
   .vstack {
