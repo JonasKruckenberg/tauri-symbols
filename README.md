@@ -11,7 +11,7 @@ A rudimentary clone of Apple's [SF Symbols app]. Because you can use all SF Symb
 
 ## Contributing
 
-This project uses [pnpm] as its package manager and [sveltekit] as its frontend stack. 
+This project uses [pnpm] as its package manager and [sveltekit] as its frontend stack.
 
 ### Developing
 
@@ -33,6 +33,6 @@ pnpm build
 
 [MIT © Jonas Kruckenberg.](./LICENSE)
 
-[SF Symbols app]: https://developer.apple.com/sf-symbols/
+[sf symbols app]: https://developer.apple.com/sf-symbols/
 [pnpm]: https://pnpm.io
 [sveltekit]: https://kit.svelte.dev/

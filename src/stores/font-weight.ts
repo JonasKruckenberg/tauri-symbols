@@ -1,3 +1,3 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-export const fontWeight = writable(400)
+export const fontWeight = writable(400);
