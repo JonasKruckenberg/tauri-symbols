@@ -18,20 +18,25 @@ enum Error {
     #[error("Failed to create FST index {0}")]
     Fst(#[from] fst::Error),
     #[error("Failed to parse regex {0}")]
-    Regex(#[from] regex_automata::dfa::Error)
+    Regex(#[from] regex_automata::dfa::Error),
 }
 
 impl Serialize for Error {
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
-      S: Serializer,
+        S: Serializer,
     {
-      serializer.serialize_str(self.to_string().as_ref())
+        serializer.serialize_str(self.to_string().as_ref())
     }
-  }
-  
+}
+
 #[tauri::command]
-#[cached(result = true, size = 50, key = "String", convert = r##"{ format!("{}", pattern) }"##)]
+#[cached(
+    result = true,
+    size = 50,
+    key = "String",
+    convert = r##"{ format!("{}", pattern) }"##
+)]
 fn search(map: State<'_, Map<&[u8]>>, pattern: &str) -> Result<Vec<Icon>, Error> {
     let dfa = dense::Builder::new().build(pattern)?;
     let mut stream = map.search(&dfa).into_stream();

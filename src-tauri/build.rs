@@ -1,6 +1,6 @@
 use fst::Map;
 use serde::Deserialize;
-use std::{fs, io::BufReader, path::Path, env};
+use std::{env, fs, io::BufReader, path::Path};
 
 #[derive(Debug, Deserialize, PartialEq)]
 struct Icon {
