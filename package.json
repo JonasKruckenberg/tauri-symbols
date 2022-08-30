@@ -2,9 +2,7 @@
 	"name": "my-app",
 	"version": "0.0.1",
 	"type": "module",
-	"engines": {
-		"pnpm": "^7.0.0"
-	},
+	"packageManager": "pnpm@7.9.5",
 	"scripts": {
 		"dev": "tauri dev",
 		"build": "tauri build",
