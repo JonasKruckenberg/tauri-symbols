@@ -14,7 +14,7 @@ rust-version = "1.57"
 [build-dependencies]
 fst = "0.4.7"
 serde = { version = "1.0.144", features = ["derive"] }
-serde_json = "1.0.82"
+serde_json = "1.0.85"
 tauri-build = { version = "1.0.4", features = [] }
 
 
