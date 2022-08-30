@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  audit-js:
+  lint-js:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

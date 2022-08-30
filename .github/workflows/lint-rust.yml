@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  clippy:
+  lint-rust:
     runs-on: macos-latest
     strategy:
       fail-fast: false
