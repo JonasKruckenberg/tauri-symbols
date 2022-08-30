@@ -14,7 +14,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "1.0.0-next.38",
-		"@sveltejs/kit": "next",
+		"@sveltejs/kit": "1.0.0-next.454",
 		"@typescript-eslint/eslint-plugin": "5.35.1",
 		"@typescript-eslint/parser": "5.35.1",
 		"eslint": "8.23.0",
@@ -28,7 +28,7 @@
 		"svelte-preprocess": "4.10.7",
 		"tslib": "2.4.0",
 		"typescript": "4.8.2",
-		"vite": "3.0.9"
+		"vite": "3.1.0-beta.1"
 	},
 	"dependencies": {
 		"@tauri-apps/api": "1.0.2"
