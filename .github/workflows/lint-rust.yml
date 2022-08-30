@@ -39,7 +39,7 @@ jobs:
 
       - name: Mock Files
         run: |
-          mkdir dist
+          mkdir build
 
       - uses: actions-rs/clippy-check@v1
         with:
