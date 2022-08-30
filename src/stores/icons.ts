@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { browser } from '$app/env';
+import { browser } from '$app/environment';
 import { invoke } from '@tauri-apps/api/tauri';
 
 export type Icon = [name: string, symbol: string];

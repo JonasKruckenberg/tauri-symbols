@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../global.css';
 	import Titlebar from '../lib/Titlebar.svelte';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { fontWeight } from '../stores/font-weight';
 
 	if (browser) {
