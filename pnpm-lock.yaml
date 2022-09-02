@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@sveltejs/adapter-static': 1.0.0-next.40
+  '@sveltejs/adapter-static': 1.0.0-next.41
   '@sveltejs/kit': 1.0.0-next.454
   '@tauri-apps/api': 1.0.2
   '@tauri-apps/cli': 1.0.5
@@ -23,7 +23,7 @@ dependencies:
   '@tauri-apps/api': 1.0.2
 
 devDependencies:
-  '@sveltejs/adapter-static': 1.0.0-next.40
+  '@sveltejs/adapter-static': 1.0.0-next.41
   '@sveltejs/kit': 1.0.0-next.454_fhgkwirxvgjw2igda6zmhiisma
   '@tauri-apps/cli': 1.0.5
   '@typescript-eslint/eslint-plugin': 5.36.1_lbwfnm54o3pmr3ypeqp3btnera
@@ -141,8 +141,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-static/1.0.0-next.40:
-    resolution: {integrity: sha512-Yli+dNa2xSsE3Cbh99l8ez76xReAEdpRN3quphl9BHpwf5ZyI4HL8D7vTHQ+xYQVbDoLEcW3Z4Os2F7UIUQCng==}
+  /@sveltejs/adapter-static/1.0.0-next.41:
+    resolution: {integrity: sha512-Bw6MfEuzuqjKZuVCG7ZHXiOIy/LDoRVR278eeAf4kcwl1B8+YEvChqdCvG2N5Ur+rxUIHstPgeX39HezS8d+mw==}
     dev: true
 
   /@sveltejs/kit/1.0.0-next.454_fhgkwirxvgjw2igda6zmhiisma:
