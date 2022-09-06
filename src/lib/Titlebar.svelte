@@ -3,7 +3,7 @@
 	import { icons } from '../stores/icons';
 	import type { Icon } from '../stores/icons';
 	import { fontWeight } from '../stores/font-weight';
-	import { _ } from 'svelte-i18n'
+	import { t } from '$lib/i18n'; 
 
 	function handleSearch(pattern: string) {
 		let promise: Promise<Icon[]>;
@@ -25,8 +25,8 @@
 <header data-tauri-drag-region>
 	<!-- Leading edge -->
 	<div id="area-info" class="vstack">
-		<span class="bold">{$_('all')} </span>
-		<span>{Intl.NumberFormat().format($icons.length)} {$_('symbols')}</span>
+		<span class="bold">{$t('titlebar.all')} </span>
+		<span>{Intl.NumberFormat().format($icons.length)} {$t('titlebar.symbols')}</span>
 	</div>
 
 	<label for="search" id="area-search">
@@ -35,22 +35,22 @@
 			id="search"
 			type="search"
 			autocomplete="off"
-			placeholder={$_('search')}
+			placeholder={$t('titlebar.search')}
 			on:input={(event) => handleSearch(event.target.value)}
 		/>
 	</label>
 	<label for="font-weight" id="area-font-size"
-		>{$_('symbol_weight.title')}
+		>{$t('titlebar.symbol_weight.title')}
 		<select bind:value={$fontWeight} id="font-weight">
-			<option value={100}>{$_('symbol_weight.thin')}</option>
-			<option value={200}>{$_('symbol_weight.ultra_light')}</option>
-			<option value={300}>{$_('symbol_weight.light')}</option>
-			<option value={400} default>{$_('symbol_weight.regular')}</option>
-			<option value={500}>{$_('symbol_weight.medium')}</option>
-			<option value={600}>{$_('symbol_weight.semi_bold')}</option>
-			<option value={700}>{$_('symbol_weight.bold')}</option>
-			<option value={800}>{$_('symbol_weight.heavy')}</option>
-			<option value={900}>{$_('symbol_weight.black')}</option>
+			<option value={100}>{$t('titlebar.symbol_weight.thin')}</option>
+			<option value={200}>{$t('titlebar.symbol_weight.ultra_light')}</option>
+			<option value={300}>{$t('titlebar.symbol_weight.light')}</option>
+			<option value={400} default>{$t('titlebar.symbol_weight.regular')}</option>
+			<option value={500}>{$t('titlebar.symbol_weight.medium')}</option>
+			<option value={600}>{$t('titlebar.symbol_weight.semi_bold')}</option>
+			<option value={700}>{$t('titlebar.symbol_weight.bold')}</option>
+			<option value={800}>{$t('titlebar.symbol_weight.heavy')}</option>
+			<option value={900}>{$t('titlebar.symbol_weight.black')}</option>
 		</select>
 	</label>
 </header>
