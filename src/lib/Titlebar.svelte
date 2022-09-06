@@ -3,7 +3,7 @@
 	import { icons } from '../stores/icons';
 	import type { Icon } from '../stores/icons';
 	import { fontWeight } from '../stores/font-weight';
-	import { t } from '$lib/i18n'; 
+	import { t } from '$lib/i18n';
 
 	function handleSearch(pattern: string) {
 		let promise: Promise<Icon[]>;

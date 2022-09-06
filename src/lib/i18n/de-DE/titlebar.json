@@ -1,17 +1,17 @@
 {
-  "all": "Alle",
-  "symbols": "Symbole",
-  "symbol_weight": {
-      "title": "Symbol Weight",
-      "thin": "Ultraleicht",
-      "ultra_light": "Extraleicht",
-      "light": "Mager",
-      "regular": "Normal",
-      "medium": "Leichthalbfett",
-      "semi_bold": "Halbfett",
-      "bold": "Fett",
-      "heavy": "Extrafett",
-      "black": "Ultrafett"
-  },
-  "search": "Suchen"
+	"all": "Alle",
+	"symbols": "Symbole",
+	"symbol_weight": {
+		"title": "Symbol Weight",
+		"thin": "Ultraleicht",
+		"ultra_light": "Extraleicht",
+		"light": "Mager",
+		"regular": "Normal",
+		"medium": "Leichthalbfett",
+		"semi_bold": "Halbfett",
+		"bold": "Fett",
+		"heavy": "Extrafett",
+		"black": "Ultrafett"
+	},
+	"search": "Suchen"
 }

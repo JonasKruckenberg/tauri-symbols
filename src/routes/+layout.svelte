@@ -15,7 +15,7 @@
 			document.documentElement.style.setProperty('--font-weight', val.toString());
 		});
 
-		locale.set(navigator.language)
+		locale.set(navigator.language);
 	}
 </script>
 
