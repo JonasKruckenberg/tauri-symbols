@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../i18n';
 	import '../global.css';
 	import Titlebar from '../lib/Titlebar.svelte';
 	import { browser } from '$app/environment';

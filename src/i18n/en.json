@@ -1,0 +1,17 @@
+{
+    "all": "All",
+    "symbols": "Symbols",
+    "symbol_weight": {
+        "title": "Symbol Weight",
+        "thin": "Thin",
+        "ultra_light": "Ultra Light",
+        "light": "Light",
+        "regular": "Regular",
+        "medium": "Medium",
+        "semi_bold": "Semi Bold",
+        "bold": "Bold",
+        "heavy": "Heavy",
+        "black": "Black"
+    },
+    "search": "Search"
+}
