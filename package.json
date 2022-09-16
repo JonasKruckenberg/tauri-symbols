@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-static": "1.0.0-next.43",
 		"@sveltejs/kit": "1.0.0-next.482",
-		"@tauri-apps/cli": "1.0.5",
+		"@tauri-apps/cli": "1.1.0",
 		"@typescript-eslint/eslint-plugin": "5.37.0",
 		"@typescript-eslint/parser": "5.37.0",
 		"eslint": "8.23.1",
@@ -31,7 +31,7 @@
 		"vite": "3.1.1"
 	},
 	"dependencies": {
-		"@tauri-apps/api": "1.0.2",
+		"@tauri-apps/api": "1.1.0",
 		"sveltekit-i18n": "2.2.2"
 	}
 }
