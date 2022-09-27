@@ -23,7 +23,7 @@ tauri = { git = "https://github.com/tauri-apps/tauri", branch = "macos-transpare
 fst = { version = "0.4.7"}
 regex-automata = { version = "0.2.0", features = ["transducer"] }
 serde = { version = "1.0.145", features = ["derive"] }
-thiserror = "1.0.36"
+thiserror = "1.0.37"
 cached = { version = "0.39.0", default-features = false, features = ["proc_macro"] }
 
 [features]
