@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@sentry/browser': ^7.14.1
   '@sentry/tracing': ^7.14.1
   '@sveltejs/adapter-static': 1.0.0-next.44
   '@sveltejs/kit': 1.0.0-next.509
@@ -24,7 +23,6 @@ specifiers:
   vite: 3.1.4
 
 dependencies:
-  '@sentry/browser': 7.14.1
   '@sentry/tracing': 7.14.1
   '@tauri-apps/api': 1.1.0
   sveltekit-i18n: 2.2.2_svelte@3.50.1
