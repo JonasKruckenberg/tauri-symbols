@@ -8,6 +8,7 @@ use fst::{IntoStreamer, Map, Streamer};
 use regex_automata::dfa::dense;
 use serde::{Serialize, Serializer};
 use tauri::{Manager, State, TitleBarStyle, WindowBuilder};
+use tauri_plugin_sentry::sentry::IntoDsn;
 
 pub static FST: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/fst.bin"));
 
@@ -68,21 +69,38 @@ fn all(map: State<'_, Map<&[u8]>>) -> Vec<Icon> {
 }
 
 fn main() {
-    tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![all, search])
-        .setup(|app| {
-            app.manage(Map::new(FST)?);
+    let logger = sentry_log::SentryLogger::with_dest(env_logger::builder().build());
 
-            WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
-                .inner_size(1000.0, 600.0)
-                .visible(false)
-                .title("")
-                .hidden_title(true)
-                .title_bar_style(TitleBarStyle::Overlay)
-                .build()?;
+    log::set_boxed_logger(Box::new(logger)).unwrap();
+    log::set_max_level(log::LevelFilter::Info);
 
-            Ok(())
+    let init_sentry = |_:bool| {
+        tauri_plugin_sentry::sentry::init(tauri_plugin_sentry::sentry::ClientOptions {
+            dsn: "https://cd1169c0f3334d53b97db60d1ca1ac01@o4503930527088640.ingest.sentry.io/4503930528399360".into_dsn().expect("failed to parse DSN"),
+            release: tauri_plugin_sentry::sentry::release_name!(),
+            ..Default::default()
         })
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+    };
+
+    tauri_plugin_sentry::init(init_sentry, |sentry_plugin| {
+        tauri::Builder::default()
+            .invoke_handler(tauri::generate_handler![all, search])
+            .plugin(sentry_plugin)
+            .setup(|app| {
+                app.manage(Map::new(FST)?);
+    
+                WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
+                    .inner_size(1000.0, 600.0)
+                    .visible(true)
+                    .title("")
+                    .hidden_title(true)
+                    .title_bar_style(TitleBarStyle::Overlay)
+                    .build()?;
+    
+                Ok(())
+            })
+            .run(tauri::generate_context!())
+            .expect("error while running tauri application");
+    });
+
 }

@@ -1,11 +1,22 @@
-<script lang="ts">
+<script lang="ts" context="module">
 	import '../global.css';
 	import Titlebar from '../lib/Titlebar.svelte';
 	import { browser } from '$app/environment';
 	import { fontWeight } from '../stores/font-weight';
 	import { locale } from '$lib/i18n';
+	import * as TauriSentry from 'tauri-plugin-sentry-api'
+	import { BrowserTracing } from '@sentry/tracing';
 
 	if (browser) {
+		TauriSentry.init({
+			integrations: [new BrowserTracing()],
+
+			// Set tracesSampleRate to 1.0 to capture 100%
+			// of transactions for performance monitoring.
+			// We recommend adjusting this value in production
+			tracesSampleRate: 1.0,
+		});
+
 		import('@tauri-apps/api/window').then(({ getCurrent }) => {
 			const win = getCurrent();
 			win.show();
