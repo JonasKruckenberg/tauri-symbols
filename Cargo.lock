@@ -71,12 +71,13 @@ dependencies = [
  "fst",
  "log",
  "regex-automata 0.2.0",
+ "sentry",
  "sentry-log",
+ "sentry-tauri",
  "serde",
  "serde_json",
  "tauri",
  "tauri-build",
- "tauri-plugin-sentry",
  "thiserror",
 ]
 
@@ -2746,6 +2747,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "sentry-tauri"
+version = "0.1.0"
+source = "git+https://github.com/JonasKruckenberg/sentry-tauri?branch=next#e27ca46e480e95d29afec78f4cbeae01862467d7"
+dependencies = [
+ "sentry",
+ "sentry-rust-minidump",
+ "serde",
+ "serde_json",
+ "tauri",
+]
+
+[[package]]
 name = "sentry-types"
 version = "0.27.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3195,18 +3208,6 @@ dependencies = [
  "syn",
  "tauri-codegen",
  "tauri-utils",
-]
-
-[[package]]
-name = "tauri-plugin-sentry"
-version = "0.1.0"
-source = "git+https://github.com/JonasKruckenberg/sentry-tauri#11d00bcf9866f79604ac0b2b44e1e50e4502a166"
-dependencies = [
- "sentry",
- "sentry-rust-minidump",
- "serde",
- "serde_json",
- "tauri",
 ]
 
 [[package]]

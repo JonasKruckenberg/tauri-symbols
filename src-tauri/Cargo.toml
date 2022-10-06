@@ -24,10 +24,11 @@ regex-automata = { version = "0.2.0", features = ["transducer"] }
 serde = { version = "1.0.145", features = ["derive"] }
 thiserror = "1.0.37"
 cached = { version = "0.39.0", default-features = false, features = ["proc_macro"] }
-tauri-plugin-sentry = { git = "https://github.com/JonasKruckenberg/sentry-tauri" }
+sentry-tauri = { git = "https://github.com/JonasKruckenberg/sentry-tauri", branch = "next" }
 env_logger = "0.9.1"
 sentry-log = "0.27.0"
 log = "0.4.17"
+sentry = "0.27.0"
 
 [features]
 # by default Tauri runs in production mode

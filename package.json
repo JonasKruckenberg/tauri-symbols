@@ -34,6 +34,6 @@
 		"@sentry/tracing": "^7.14.1",
 		"@tauri-apps/api": "1.1.0",
 		"sveltekit-i18n": "2.2.2",
-		"tauri-plugin-sentry-api": "github:JonasKruckenberg/sentry-tauri"
+		"@timfish/tauri-sentry": "github:JonasKruckenberg/sentry-tauri#df123beb03104b6068b3bdd6fc509e3158f7dd30"
 	}
 }

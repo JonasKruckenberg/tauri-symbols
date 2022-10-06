@@ -8,7 +8,7 @@ use fst::{IntoStreamer, Map, Streamer};
 use regex_automata::dfa::dense;
 use serde::{Serialize, Serializer};
 use tauri::{Manager, State, TitleBarStyle, WindowBuilder};
-use tauri_plugin_sentry::sentry::IntoDsn;
+use sentry::IntoDsn;
 
 pub static FST: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/fst.bin"));
 
@@ -75,14 +75,14 @@ fn main() {
     log::set_max_level(log::LevelFilter::Info);
 
     let init_sentry = |_:bool| {
-        tauri_plugin_sentry::sentry::init(tauri_plugin_sentry::sentry::ClientOptions {
+        sentry::init(sentry::ClientOptions {
             dsn: "https://cd1169c0f3334d53b97db60d1ca1ac01@o4503930527088640.ingest.sentry.io/4503930528399360".into_dsn().expect("failed to parse DSN"),
-            release: tauri_plugin_sentry::sentry::release_name!(),
+            release: sentry::release_name!(),
             ..Default::default()
         })
     };
 
-    tauri_plugin_sentry::init(init_sentry, |sentry_plugin| {
+    sentry_tauri::init(init_sentry, |sentry_plugin| {
         tauri::Builder::default()
             .invoke_handler(tauri::generate_handler![all, search])
             .plugin(sentry_plugin)

@@ -6,6 +6,7 @@ specifiers:
   '@sveltejs/kit': 1.0.0-next.509
   '@tauri-apps/api': 1.1.0
   '@tauri-apps/cli': 1.1.1
+  '@timfish/tauri-sentry': github:JonasKruckenberg/sentry-tauri#df123beb03104b6068b3bdd6fc509e3158f7dd30
   '@typescript-eslint/eslint-plugin': 5.39.0
   '@typescript-eslint/parser': 5.39.0
   eslint: 8.24.0
@@ -17,7 +18,6 @@ specifiers:
   svelte-check: 2.9.1
   svelte-preprocess: 4.10.7
   sveltekit-i18n: 2.2.2
-  tauri-plugin-sentry-api: github:JonasKruckenberg/sentry-tauri
   tslib: 2.4.0
   typescript: 4.8.4
   vite: 3.1.4
@@ -25,8 +25,8 @@ specifiers:
 dependencies:
   '@sentry/tracing': 7.14.1
   '@tauri-apps/api': 1.1.0
+  '@timfish/tauri-sentry': github.com/JonasKruckenberg/sentry-tauri/df123beb03104b6068b3bdd6fc509e3158f7dd30
   sveltekit-i18n: 2.2.2_svelte@3.50.1
-  tauri-plugin-sentry-api: github.com/JonasKruckenberg/sentry-tauri/11d00bcf9866f79604ac0b2b44e1e50e4502a166
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.44
@@ -1929,11 +1929,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/JonasKruckenberg/sentry-tauri/11d00bcf9866f79604ac0b2b44e1e50e4502a166:
-    resolution: {tarball: https://codeload.github.com/JonasKruckenberg/sentry-tauri/tar.gz/11d00bcf9866f79604ac0b2b44e1e50e4502a166}
-    name: tauri-plugin-sentry-api
+  github.com/JonasKruckenberg/sentry-tauri/df123beb03104b6068b3bdd6fc509e3158f7dd30:
+    resolution: {tarball: https://codeload.github.com/JonasKruckenberg/sentry-tauri/tar.gz/df123beb03104b6068b3bdd6fc509e3158f7dd30}
+    name: '@timfish/sentry-tauri'
     version: 0.1.0
     dependencies:
       '@sentry/browser': 7.14.1
+      '@tauri-apps/api': 1.1.0
       tslib: 2.4.0
     dev: false
