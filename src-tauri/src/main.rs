@@ -6,9 +6,10 @@
 use cached::proc_macro::cached;
 use fst::{IntoStreamer, Map, Streamer};
 use regex_automata::dfa::dense;
+use sentry::IntoDsn;
 use serde::{Serialize, Serializer};
 use tauri::{Manager, State, TitleBarStyle, WindowBuilder};
-use sentry::IntoDsn;
+use tracing_subscriber::prelude::*;
 
 pub static FST: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/fst.bin"));
 
@@ -31,6 +32,7 @@ impl Serialize for Error {
     }
 }
 
+#[tracing::instrument(level = "info")]
 #[tauri::command]
 #[cached(
     result = true,
@@ -53,6 +55,7 @@ fn search(map: State<'_, Map<&[u8]>>, pattern: &str) -> Result<Vec<Icon>, Error>
     Ok(entries)
 }
 
+#[tracing::instrument(level = "info")]
 #[tauri::command]
 fn all(map: State<'_, Map<&[u8]>>) -> Vec<Icon> {
     let mut stream = map.stream();
@@ -69,17 +72,20 @@ fn all(map: State<'_, Map<&[u8]>>) -> Vec<Icon> {
 }
 
 fn main() {
-    let logger = sentry_log::SentryLogger::with_dest(env_logger::builder().build());
-
-    log::set_boxed_logger(Box::new(logger)).unwrap();
-    log::set_max_level(log::LevelFilter::Info);
-
-    let init_sentry = |_:bool| {
-        sentry::init(sentry::ClientOptions {
+    let init_sentry = |_: bool| {
+        let _guard = sentry::init(sentry::ClientOptions {
             dsn: "https://cd1169c0f3334d53b97db60d1ca1ac01@o4503930527088640.ingest.sentry.io/4503930528399360".into_dsn().expect("failed to parse DSN"),
             release: sentry::release_name!(),
+            traces_sample_rate: 1.0,
             ..Default::default()
-        })
+        });
+
+        tracing_subscriber::registry()
+            .with(tracing_subscriber::fmt::layer())
+            .with(sentry_tracing::layer())
+            .init();
+
+        _guard
     };
 
     sentry_tauri::init(init_sentry, |sentry_plugin| {
@@ -88,7 +94,7 @@ fn main() {
             .plugin(sentry_plugin)
             .setup(|app| {
                 app.manage(Map::new(FST)?);
-    
+
                 WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
                     .inner_size(1000.0, 600.0)
                     .visible(true)
@@ -96,11 +102,10 @@ fn main() {
                     .hidden_title(true)
                     .title_bar_style(TitleBarStyle::Overlay)
                     .build()?;
-    
+
                 Ok(())
             })
             .run(tauri::generate_context!())
             .expect("error while running tauri application");
     });
-
 }
