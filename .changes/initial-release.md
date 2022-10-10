@@ -1,5 +1,5 @@
 ---
-'pisano': minor
+'tauri-symbols': minor
 ---
 
 Initial release
