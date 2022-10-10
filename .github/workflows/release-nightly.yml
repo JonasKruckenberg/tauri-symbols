@@ -52,7 +52,7 @@ jobs:
           default: true
           override: true
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           target: ${{ matrix.config.rust_target }}
 
       - uses: Swatinem/rust-cache@v1
@@ -122,6 +122,7 @@ jobs:
           APPLE_SIGNING_IDENTITY: '${{ secrets.APPLE_SIGNING_IDENTITY }}'
           TAURI_KEY_PASSWORD: '${{ secrets.TAURI_KEY_PASSWORD }}'
           TAURI_PRIVATE_KEY: '${{ secrets.TAURI_PRIVATE_KEY }}'
+          CARGO_UNSTABLE_SPARSE_REGISTRY: true
         with:
           target: ${{ matrix.config.rust_target }}
           args: --verbose
