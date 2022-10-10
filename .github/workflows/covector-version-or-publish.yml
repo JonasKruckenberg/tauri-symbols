@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       willPublish: ${{ steps.covector-status.outputs.willPublish-tauri-symbols }}
-      version: ${{ steps.covector-status.outputs.version-app }}
+      version: ${{ steps.covector-status.outputs.version-tauri-symbols }}
 
     steps:
       - uses: actions/checkout@v3
