@@ -1,8 +1,13 @@
 name: covector version or publish
+
 on:
   push:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   version-or-release:
