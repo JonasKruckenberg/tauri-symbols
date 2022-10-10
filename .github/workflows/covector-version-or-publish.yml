@@ -47,12 +47,11 @@ jobs:
           branch: 'release'
           body: ${{ steps.covector-version.outputs.change }}
 
-  create-and-upload-assets:
-    runs-on: ${{ matrix.platform }}
+  build-binaries:
+    runs-on: ${{ matrix.config.os }}
     needs: [version-or-release]
     if: needs.version-or-release.outputs.willPublish
     timeout-minutes: 30
-
     strategy:
       fail-fast: false
       matrix:
@@ -69,9 +68,10 @@ jobs:
           # - os: windows-latest
           #   arch: x86_64
           #   rust_target: x86_64-pc-windows-msvc
-
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.branch }}
 
       - name: 'Setup Rust'
         uses: actions-rs/toolchain@v1
@@ -107,29 +107,37 @@ jobs:
         name: Setup pnpm cache
         with:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-${{ matrix.config.arch }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-${{ matrix.config.arch }}-pnpm-store-
 
       - uses: pnpm/action-setup@v2.2.2
         with:
           run_install: true
 
+      # - name: create apple private key file
+      #   if: "matrix.config.os == 'macos-latest'"
+      #   run: |
+      #     mkdir ./desktop/app/private_keys
+      #     echo "$APPLE_API_PRIVKEY" > ./desktop/app/private_keys/AuthKey_$APPLE_API_KEY.p8
+      #   env:
+      #     APPLE_API_PRIVKEY: '${{ secrets.APPLE_API_PRIVKEY }}'
+      #     APPLE_API_KEY: '${{ secrets.APPLE_API_KEY }}'
+
       - uses: JonasKruckenberg/tauri-build@v1.1.1
         id: tauri_build
         env:
-          VERSION: ${{ needs.version-or-release.outputs.version }}
+          VERSION: ${{ needs.get-version.outputs.version }}
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           # ENABLE_CODE_SIGNING: '${{ secrets.APPLE_CERTIFICATE }}'
           # APPLE_API_ISSUER: '${{ secrets.APPLE_API_ISSUER }}'
           # APPLE_API_KEY: '${{ secrets.APPLE_API_KEY }}'
           # APPLE_CERTIFICATE: '${{ secrets.APPLE_CERTIFICATE }}'
           # APPLE_CERTIFICATE_PASSWORD:
-          #   '${{ secrets.APPLE_CERTIFICATE_PASSWORD }}'
+          # '${{ secrets.APPLE_CERTIFICATE_PASSWORD }}'
           # APPLE_SIGNING_IDENTITY: '${{ secrets.APPLE_SIGNING_IDENTITY }}'
           # TAURI_KEY_PASSWORD: '${{ secrets.TAURI_KEY_PASSWORD }}'
           # TAURI_PRIVATE_KEY: '${{ secrets.TAURI_PRIVATE_KEY }}'
-          CARGO_UNSTABLE_SPARSE_REGISTRY: true
         with:
           target: ${{ matrix.config.rust_target }}
           args: --verbose
@@ -139,11 +147,10 @@ jobs:
           name: artifacts-${{ matrix.config.arch }}
           path: "${{ join(fromJSON(steps.tauri_build.outputs.artifacts), '\n') }}"
 
-  publish:
-    needs: [version-or-release, create-and-upload-assets]
+  publish-to-github:
+    needs: [version-or-release, build-binaries]
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     steps:
       - uses: actions/checkout@v3
 
@@ -161,17 +168,17 @@ jobs:
 
       - name: Rename .app artifacts
         run: |
-          mv ./artifacts/x86_64/macos/Mintter.app.tar.gz ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz
-          mv ./artifacts/aarch64/macos/Mintter.app.tar.gz ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz
-        # mv ./artifacts/x86_64/macos/Mintter.app.tar.gz.sig ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz.sig
-        # mv ./artifacts/aarch64/macos/Mintter.app.tar.gz.sig ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz.sig
+          mv "./artifacts/x86_64/macos/Tauri-Symbols.app.tar.gz" "./artifacts/x86_64/macos/Tauri Symbols_x86.app.tar.gz"
+          mv "./artifacts/aarch64/macos/Tauri-Symbols.app.tar.gz" "./artifacts/aarch64/macos/Tauri Symbols_aarch64.app.tar.gz"
+        #  mv "./artifacts/x86_64/macos/tauri-symbols.app.tar.gz.sig" "./artifacts/x86_64/macos/tauri-symbols_x86.app.tar.gz.sig"
+        #  mv "./artifacts/aarch64/macos/tauri-symbols.app.tar.gz.sig" "./artifacts/aarch64/macos/tauri-symbols_aarch64.app.tar.gz.sig"
 
       - name: 'create release'
         uses: softprops/action-gh-release@master
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          tag_name: v${{ needs.get-version.outputs.version }}
+          tag_name: nightly${{ needs.get-version.outputs.version }}
           prerelease: true
           generate_release_notes: true
           files: ./artifacts/**/*
