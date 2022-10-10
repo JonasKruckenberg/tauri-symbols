@@ -52,7 +52,7 @@ jobs:
           default: true
           override: true
           profile: minimal
-          toolchain: nightly
+          toolchain: stable
           target: ${{ matrix.config.rust_target }}
 
       - uses: Swatinem/rust-cache@v1

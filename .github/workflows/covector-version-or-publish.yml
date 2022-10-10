@@ -57,18 +57,18 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - os: ubuntu-latest
-            arch: x86_64
-            rust_target: x86_64-unknown-linux-gnu
+          # - os: ubuntu-latest
+          #   arch: x86_64
+          #   rust_target: x86_64-unknown-linux-gnu
           - os: macos-latest
             arch: x86_64
             rust_target: x86_64-apple-darwin
           - os: macos-latest
             arch: aarch64
             rust_target: aarch64-apple-darwin
-          - os: windows-latest
-            arch: x86_64
-            rust_target: x86_64-pc-windows-msvc
+          # - os: windows-latest
+          #   arch: x86_64
+          #   rust_target: x86_64-pc-windows-msvc
 
     steps:
       - uses: actions/checkout@v3
@@ -79,7 +79,7 @@ jobs:
           default: true
           override: true
           profile: minimal
-          toolchain: nightly
+          toolchain: stable
           target: ${{ matrix.config.rust_target }}
 
       - uses: Swatinem/rust-cache@v1
@@ -114,12 +114,6 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           run_install: true
-
-      - name: install webkit2gtk (ubuntu only)
-        if: matrix.platform == 'ubuntu-latest'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y webkit2gtk-4.0
 
       - uses: JonasKruckenberg/tauri-build@v1.1.1
         id: tauri_build
@@ -169,8 +163,8 @@ jobs:
         run: |
           mv ./artifacts/x86_64/macos/Mintter.app.tar.gz ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz
           mv ./artifacts/aarch64/macos/Mintter.app.tar.gz ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz
-          mv ./artifacts/x86_64/macos/Mintter.app.tar.gz.sig ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz.sig
-          mv ./artifacts/aarch64/macos/Mintter.app.tar.gz.sig ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz.sig
+        # mv ./artifacts/x86_64/macos/Mintter.app.tar.gz.sig ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz.sig
+        # mv ./artifacts/aarch64/macos/Mintter.app.tar.gz.sig ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz.sig
 
       - name: 'create release'
         uses: softprops/action-gh-release@master
