@@ -154,10 +154,10 @@ jobs:
 
       - name: Rename .app artifacts
         run: |
-          mv ./artifacts/x86_64/macos/Mintter.app.tar.gz ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz
-          mv ./artifacts/aarch64/macos/Mintter.app.tar.gz ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz
-          mv ./artifacts/x86_64/macos/Mintter.app.tar.gz.sig ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz.sig
-          mv ./artifacts/aarch64/macos/Mintter.app.tar.gz.sig ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz.sig
+          mv "./artifacts/x86_64/macos/Tauri Symbols.app.tar.gz" "./artifacts/x86_64/macos/Tauri Symbols_x86.app.tar.gz"
+          mv "./artifacts/aarch64/macos/Tauri Symbols.app.tar.gz" "./artifacts/aarch64/macos/Tauri Symbols_aarch64.app.tar.gz"
+          mv "./artifacts/x86_64/macos/Tauri Symbols.app.tar.gz.sig" "./artifacts/x86_64/macos/Tauri Symbols_x86.app.tar.gz.sig"
+          mv "./artifacts/aarch64/macos/Tauri Symbols.app.tar.gz.sig" "./artifacts/aarch64/macos/Tauri Symbols_aarch64.app.tar.gz.sig"
 
       - name: 'create release'
         uses: softprops/action-gh-release@master
