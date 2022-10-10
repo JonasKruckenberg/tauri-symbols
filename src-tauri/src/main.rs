@@ -78,11 +78,14 @@ fn main() {
             let win = WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
                 .inner_size(1000.0, 600.0)
                 .visible(false)
-                .title("")
-                .hidden_title(true);
+                .title("");
 
             #[cfg(target_os = "macos")]
-            win.title_bar_style(TitleBarStyle::Overlay).build()?;
+            {
+                win.hidden_title(true)
+                    .title_bar_style(TitleBarStyle::Overlay)
+                    .build()?;
+            }
 
             #[cfg(not(target_os = "macos"))]
             win.build()?;
