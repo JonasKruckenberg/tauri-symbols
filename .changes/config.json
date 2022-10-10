@@ -1,0 +1,11 @@
+{
+	"gitSiteUrl": "https://github.com/JonasKruckenberg/tauri-symbols/",
+	"pkgManagers": {},
+	"packages": {
+		"app": {
+			"path": "./src-tauri/Cargo.toml",
+			"version": true,
+			"getPublishedVersion": "git log v${ pkgFile.version } -1 --pretty=%Cgreen${ pkgFile.version } || echo \"not published yet\""
+		}
+	}
+}

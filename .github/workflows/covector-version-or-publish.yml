@@ -1,0 +1,184 @@
+name: covector version or publish
+on:
+  push:
+    branches:
+      - next
+
+jobs:
+  version-or-release:
+    runs-on: ubuntu-latest
+    outputs:
+      willPublish: ${{ steps.covector-status.outputs.willPublish-app }}
+      version: ${{ steps.covector-status.outputs.version-app }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: covector status
+        uses: jbolda/covector/packages/action@covector-v0
+        id: covector-status
+        with:
+          command: 'status'
+
+      - name: git config
+        if: ${{ steps.covector-status.outputs.status != 'No changes.' }}
+        run: |
+          git config --global user.name "${{ github.event.pusher.name }}"
+          git config --global user.email "${{ github.event.pusher.email }}"
+
+      - name: covector version
+        uses: jbolda/covector/packages/action@covector-v0
+        id: covector-version
+        if: ${{ steps.covector-status.outputs.status != 'No changes.' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          command: 'version'
+
+      - name: Create Pull Request With Versions Bumped
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        if: ${{ steps.covector-status.outputs.status != 'No changes.' }}
+        with:
+          title: 'Publish New Versions'
+          commit-message: 'publish new versions'
+          labels: 'version updates'
+          branch: 'release'
+          body: ${{ steps.covector-version.outputs.change }}
+
+  create-and-upload-assets:
+    runs-on: ${{ matrix.platform }}
+    needs: [version-or-release]
+    if: needs.version-or-release.outputs.willPublish
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - os: ubuntu-latest
+            arch: x86_64
+            rust_target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            arch: x86_64
+            rust_target: x86_64-apple-darwin
+          - os: macos-latest
+            arch: aarch64
+            rust_target: aarch64-apple-darwin
+          - os: windows-latest
+            arch: x86_64
+            rust_target: x86_64-pc-windows-msvc
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Setup Rust'
+        uses: actions-rs/toolchain@v1
+        with:
+          default: true
+          override: true
+          profile: minimal
+          toolchain: nightly
+          target: ${{ matrix.config.rust_target }}
+
+      - uses: Swatinem/rust-cache@v1
+        with:
+          key: ${{ matrix.config.rust_target }}
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2.2.2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          run_install: true
+
+      - name: install webkit2gtk (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webkit2gtk-4.0
+
+      - uses: JonasKruckenberg/tauri-build@v1.1.1
+        id: tauri_build
+        env:
+          VERSION: ${{ needs.version-or-release.outputs.version }}
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          # ENABLE_CODE_SIGNING: '${{ secrets.APPLE_CERTIFICATE }}'
+          # APPLE_API_ISSUER: '${{ secrets.APPLE_API_ISSUER }}'
+          # APPLE_API_KEY: '${{ secrets.APPLE_API_KEY }}'
+          # APPLE_CERTIFICATE: '${{ secrets.APPLE_CERTIFICATE }}'
+          # APPLE_CERTIFICATE_PASSWORD:
+          #   '${{ secrets.APPLE_CERTIFICATE_PASSWORD }}'
+          # APPLE_SIGNING_IDENTITY: '${{ secrets.APPLE_SIGNING_IDENTITY }}'
+          # TAURI_KEY_PASSWORD: '${{ secrets.TAURI_KEY_PASSWORD }}'
+          # TAURI_PRIVATE_KEY: '${{ secrets.TAURI_PRIVATE_KEY }}'
+          CARGO_UNSTABLE_SPARSE_REGISTRY: true
+        with:
+          target: ${{ matrix.config.rust_target }}
+          args: --verbose
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: artifacts-${{ matrix.config.arch }}
+          path:
+            "${{ join(fromJSON(steps.tauri_build.outputs.artifacts), '\n') }}"
+
+  publish:
+    needs: [version-or-release, create-and-upload-assets]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download x86_64 artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts-x86_64
+          path: artifacts/x86_64
+
+      - name: Download aarch64 artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts-aarch64
+          path: artifacts/aarch64
+
+      - name: Rename .app artifacts
+        run: |
+          mv ./artifacts/x86_64/macos/Mintter.app.tar.gz ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz
+          mv ./artifacts/aarch64/macos/Mintter.app.tar.gz ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz
+          mv ./artifacts/x86_64/macos/Mintter.app.tar.gz.sig ./artifacts/x86_64/macos/Mintter_x86.app.tar.gz.sig
+          mv ./artifacts/aarch64/macos/Mintter.app.tar.gz.sig ./artifacts/aarch64/macos/Mintter_aarch64.app.tar.gz.sig
+
+      - name: 'create release'
+        uses: softprops/action-gh-release@master
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+        with:
+          tag_name: v${{ needs.get-version.outputs.version }}
+          prerelease: true
+          generate_release_notes: true
+          files: ./artifacts/**/*
