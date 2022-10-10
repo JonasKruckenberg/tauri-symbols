@@ -178,7 +178,7 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          tag_name: nightly${{ needs.get-version.outputs.version }}
-          prerelease: true
+          tag_name: v${{ needs.get-version.outputs.version }}
           generate_release_notes: true
           files: ./artifacts/**/*
+          body: ${{ steps.covector.outputs.change }}
