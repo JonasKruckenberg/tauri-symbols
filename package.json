@@ -1,6 +1,6 @@
 {
-	"name": "my-app",
-	"version": "0.0.1",
+	"name": "tauri-symbols",
+	"version": "0.0.0",
 	"type": "module",
 	"packageManager": "pnpm@7.13.3",
 	"scripts": {

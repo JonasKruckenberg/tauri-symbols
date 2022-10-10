@@ -45,20 +45,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "98161a4e3e2184da77bb14f02184cdd111e83bbbcc9979dfee3c44b9a85f5602"
 
 [[package]]
-name = "app"
-version = "0.0.0"
-dependencies = [
- "cached",
- "fst",
- "regex-automata 0.2.0",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "thiserror",
-]
-
-[[package]]
 name = "atk"
 version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2542,6 +2528,20 @@ dependencies = [
  "webview2-com",
  "windows 0.39.0",
  "wry",
+]
+
+[[package]]
+name = "tauri-symbols"
+version = "0.0.0"
+dependencies = [
+ "cached",
+ "fst",
+ "regex-automata 0.2.0",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "thiserror",
 ]
 
 [[package]]
