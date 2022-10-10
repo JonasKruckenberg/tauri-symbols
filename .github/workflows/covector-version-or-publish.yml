@@ -139,12 +139,11 @@ jobs:
         with:
           target: ${{ matrix.config.rust_target }}
           args: --verbose
-      
+
       - uses: actions/upload-artifact@v3
         with:
           name: artifacts-${{ matrix.config.arch }}
-          path:
-            "${{ join(fromJSON(steps.tauri_build.outputs.artifacts), '\n') }}"
+          path: "${{ join(fromJSON(steps.tauri_build.outputs.artifacts), '\n') }}"
 
   publish:
     needs: [version-or-release, create-and-upload-assets]
