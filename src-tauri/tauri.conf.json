@@ -8,7 +8,7 @@
 		"withGlobalTauri": true
 	},
 	"package": {
-		"productName": "Tauri Symbols"
+		"productName": "Tauri-Symbols"
 	},
 	"tauri": {
 		"allowlist": {
