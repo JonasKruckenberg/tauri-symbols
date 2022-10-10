@@ -19,7 +19,7 @@ tauri-build = { version = "1.1.1", features = [] }
 
 
 [dependencies]
-tauri = { git = "https://github.com/tauri-apps/tauri", branch = "macos-transparent-titlebar", features = ["window-maximize", "window-show", "window-start-dragging", "window-unmaximize"] }
+tauri = { git = "https://github.com/tauri-apps/tauri", features = ["window-maximize", "window-show", "window-start-dragging", "window-unmaximize"] }
 fst = { version = "0.4.7"}
 regex-automata = { version = "0.2.0", features = ["transducer"] }
 serde = { version = "1.0.145", features = ["derive"] }
