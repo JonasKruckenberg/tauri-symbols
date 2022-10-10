@@ -82,17 +82,11 @@ jobs:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           key: ${{ runner.os }}-${{matrix.config.arch}}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-${{matrix.config.arch}}-pnpm-store-
 
       - uses: pnpm/action-setup@v2.2.2
         with:
           run_install: true
-
-      - name: install webkit2gtk (ubuntu only)
-        if: matrix.platform == 'ubuntu-latest'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y webkit2gtk-4.0
 
       # - name: create apple private key file
       #   if: "matrix.config.os == 'macos-latest'"

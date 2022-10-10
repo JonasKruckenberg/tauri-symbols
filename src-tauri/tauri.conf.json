@@ -8,8 +8,7 @@
 		"withGlobalTauri": true
 	},
 	"package": {
-		"productName": "Tauri Symbols",
-		"version": "0.1.0"
+		"productName": "Tauri Symbols"
 	},
 	"tauri": {
 		"allowlist": {
@@ -47,7 +46,7 @@
 			},
 			"resources": [],
 			"shortDescription": "",
-			"targets": "app",
+			"targets": ["app", "dmg"],
 			"windows": {
 				"certificateThumbprint": null,
 				"digestAlgorithm": "sha256",
