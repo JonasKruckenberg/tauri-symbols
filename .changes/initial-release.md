@@ -1,5 +1,5 @@
 ---
-"tauri-symbols": minor
+'tauri-symbols': minor
 ---
 
 Initial release
