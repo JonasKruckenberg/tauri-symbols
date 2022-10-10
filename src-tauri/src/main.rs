@@ -7,9 +7,7 @@ use cached::proc_macro::cached;
 use fst::{IntoStreamer, Map, Streamer};
 use regex_automata::dfa::dense;
 use serde::{Serialize, Serializer};
-#[cfg(target_os = "macos")]
-use tauri::TitleBarStyle;
-use tauri::{Manager, State, WindowBuilder};
+use tauri::{Manager, State, TitleBarStyle, WindowBuilder};
 
 pub static FST: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/fst.bin"));
 
@@ -78,17 +76,10 @@ fn main() {
             let win = WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
                 .inner_size(1000.0, 600.0)
                 .visible(false)
-                .title("");
-
-            #[cfg(target_os = "macos")]
-            {
-                win.hidden_title(true)
-                    .title_bar_style(TitleBarStyle::Overlay)
-                    .build()?;
-            }
-
-            #[cfg(not(target_os = "macos"))]
-            win.build()?;
+                .title("")
+                .hidden_title(true)
+                .title_bar_style(TitleBarStyle::Overlay)
+                .build()?;
 
             Ok(())
         })
