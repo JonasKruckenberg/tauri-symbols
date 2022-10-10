@@ -73,7 +73,7 @@ fn main() {
         .setup(|app| {
             app.manage(Map::new(FST)?);
 
-            let win = WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
+            WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
                 .inner_size(1000.0, 600.0)
                 .visible(false)
                 .title("")
