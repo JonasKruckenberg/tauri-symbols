@@ -8,7 +8,7 @@ jobs:
   version-or-release:
     runs-on: ubuntu-latest
     outputs:
-      willPublish: ${{ steps.covector-status.outputs.willPublish-app }}
+      willPublish: ${{ steps.covector-status.outputs.willPublish-tauri-symbols }}
       version: ${{ steps.covector-status.outputs.version-app }}
 
     steps:
