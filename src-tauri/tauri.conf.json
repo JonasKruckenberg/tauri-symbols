@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json",
+	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
 	"build": {
 		"beforeBuildCommand": "pnpm vite build && rm build/vite-manifest.json",
 		"beforeDevCommand": "pnpm vite dev",
@@ -69,13 +69,6 @@
 		"updater": {
 			"active": false
 		},
-		"windows": [{
-			"width": 1000,
-			"height": 800,
-			"minWidth": 500,
-			"minHeight": 500,
-			"resizable": true,
-			"fullscreen": false
-		}]
+		"windows": []
 	}
 }
