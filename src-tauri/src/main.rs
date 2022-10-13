@@ -7,7 +7,7 @@ use cached::proc_macro::cached;
 use fst::{IntoStreamer, Map, Streamer};
 use regex_automata::dfa::dense;
 use serde::{Serialize, Serializer};
-use tauri::{Manager, State, TitleBarStyle, WindowBuilder};
+use tauri::{Manager, State};
 
 pub static FST: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/fst.bin"));
 
@@ -72,14 +72,6 @@ fn main() {
         .invoke_handler(tauri::generate_handler![all, search])
         .setup(|app| {
             app.manage(Map::new(FST)?);
-
-            WindowBuilder::new(app, "label", tauri::WindowUrl::App("index.html".into()))
-                .inner_size(1000.0, 600.0)
-                .visible(false)
-                .title("")
-                .hidden_title(true)
-                .title_bar_style(TitleBarStyle::Overlay)
-                .build()?;
 
             Ok(())
         })
