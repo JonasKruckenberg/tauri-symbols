@@ -11,6 +11,12 @@
 		"productName": "Tauri-Symbols"
 	},
 	"tauri": {
+		"pattern": {
+			"use": "isolation",
+			"options": {
+			  "dir": "../isolation"
+			}
+		  },
 		"allowlist": {
 			"all": false,
 			"window": {
@@ -69,9 +75,7 @@
 			"minWidth": 500,
 			"minHeight": 500,
 			"resizable": true,
-			"fullscreen": false,
-			"hiddenTitle": true,
-			"titleBarStyle": "Overlay"
+			"fullscreen": false
 		}]
 	}
 }
