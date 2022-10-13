@@ -35,6 +35,9 @@
 			id="search"
 			type="search"
 			autocomplete="off"
+			autocorrect="off"
+			autocapitalize="off"
+			spellcheck="false"
 			placeholder={$t('titlebar.search')}
 			on:input={(event) => handleSearch(event.target.value)}
 		/>
