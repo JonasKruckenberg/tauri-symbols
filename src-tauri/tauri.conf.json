@@ -14,9 +14,9 @@
 		"pattern": {
 			"use": "isolation",
 			"options": {
-			  "dir": "../isolation"
+				"dir": "../isolation"
 			}
-		  },
+		},
 		"allowlist": {
 			"all": false,
 			"window": {
