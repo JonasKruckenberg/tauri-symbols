@@ -94,7 +94,7 @@ jobs:
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.2.3
+      - uses: pnpm/action-setup@v2.2.4
         name: Install pnpm
         id: pnpm-install
         with:
@@ -114,7 +114,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.config.arch }}-pnpm-store-
 
-      - uses: pnpm/action-setup@v2.2.3
+      - uses: pnpm/action-setup@v2.2.4
         with:
           run_install: true
 
