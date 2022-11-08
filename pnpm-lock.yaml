@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@sveltejs/adapter-static': 1.0.0-next.48
   '@sveltejs/kit': 1.0.0-next.538
-  '@tauri-apps/api': 1.1.0
+  '@tauri-apps/api': 1.2.0
   '@tauri-apps/cli': 1.1.1
   '@typescript-eslint/eslint-plugin': 5.42.1
   '@typescript-eslint/parser': 5.42.1
@@ -22,7 +22,7 @@ specifiers:
   vite: 3.2.3
 
 dependencies:
-  '@tauri-apps/api': 1.1.0
+  '@tauri-apps/api': 1.2.0
   sveltekit-i18n: 2.2.2_svelte@3.52.0
 
 devDependencies:
@@ -303,9 +303,9 @@ packages:
     resolution: {integrity: sha512-HheveklTjp3hxpYQhoHfyA6B4bQaUeSV5MQf2usIv/58UF2jY/YqhCAWj9bDBjufbuZc5pSz4BXvdX3WVT+viA==}
     dev: false
 
-  /@tauri-apps/api/1.1.0:
-    resolution: {integrity: sha512-n13pIqdPd3KtaMmmAcrU7BTfdMtIlGNnfZD0dNX8L4p8dgmuNyikm6JAA+yCpl9gqq6I8x5cV2Y0muqdgD0cWw==}
-    engines: {node: '>= 12.22.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+  /@tauri-apps/api/1.2.0:
+    resolution: {integrity: sha512-lsI54KI6HGf7VImuf/T9pnoejfgkNoXveP14pVV7XarrQ46rOejIVJLFqHI9sRReJMGdh2YuCoI3cc/yCWCsrw==}
+    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
     dev: false
 
   /@tauri-apps/cli-darwin-arm64/1.1.1:
