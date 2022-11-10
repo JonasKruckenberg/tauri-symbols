@@ -2,7 +2,7 @@
 	"name": "tauri-symbols",
 	"version": "0.0.0",
 	"type": "module",
-	"packageManager": "pnpm@7.14.2",
+	"packageManager": "pnpm@7.15.0",
 	"scripts": {
 		"dev": "tauri dev",
 		"build": "tauri build",
