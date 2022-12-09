@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@sveltejs/adapter-static': 1.0.0-next.49
-  '@sveltejs/kit': 1.0.0-next.577
+  '@sveltejs/kit': 1.0.0-next.581
   '@tauri-apps/api': 1.2.0
   '@tauri-apps/cli': 1.2.2
   '@typescript-eslint/eslint-plugin': 5.46.0
@@ -27,7 +27,7 @@ dependencies:
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.49
-  '@sveltejs/kit': 1.0.0-next.577_svelte@3.54.0+vite@3.2.5
+  '@sveltejs/kit': 1.0.0-next.581_svelte@3.54.0+vite@3.2.5
   '@tauri-apps/cli': 1.2.2
   '@typescript-eslint/eslint-plugin': 5.46.0_5mle7isnkfgjmrghnnczirv6iy
   '@typescript-eslint/parser': 5.46.0_ha6vam6werchizxrnqvarmz2zu
@@ -239,19 +239,20 @@ packages:
     resolution: {integrity: sha512-tPMnqzFpFDWbeRsSkTUUIvjSHv66uEilQvk9shupsVRDycBb7ZACEnfA/T1HyEZKaMZYfFafyKb2dCTDGks0nA==}
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.577_svelte@3.54.0+vite@3.2.5:
-    resolution: {integrity: sha512-hQuSGiF87pNNdmIMDwOr8+nMOe/tgtOne4VBpCFb4k0YrFh/5qC/pgWvWXFWeJBRi9/UzmEjGH9gJeJkgtMLmw==}
+  /@sveltejs/kit/1.0.0-next.581_svelte@3.54.0+vite@3.2.5:
+    resolution: {integrity: sha512-BIBJpx4q+MOa1fFuGNhRTIm8wygl8cK6b+Ei/iaG4F1GfqbZkVclrh4p9lGobSXtuXzCBLabe88mvHQ1cd5ZqA==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
     peerDependencies:
-      svelte: ^3.44.0
-      vite: ^3.2.0
+      svelte: ^3.54.0
+      vite: ^4.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 1.3.1_svelte@3.54.0+vite@3.2.5
+      '@sveltejs/vite-plugin-svelte': 2.0.0_svelte@3.54.0+vite@3.2.5
       '@types/cookie': 0.5.1
       cookie: 0.5.0
       devalue: 4.2.0
+      esm-env: 1.0.0
       kleur: 4.1.5
       magic-string: 0.27.0
       mime: 3.0.0
@@ -263,25 +264,20 @@ packages:
       undici: 5.14.0
       vite: 3.2.5
     transitivePeerDependencies:
-      - diff-match-patch
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte/1.3.1_svelte@3.54.0+vite@3.2.5:
-    resolution: {integrity: sha512-2Uu2sDdIR+XQWF7QWOVSF2jR9EU6Ciw1yWfYnfLYj8HIgnNxkh/8g22Fw2pBUI8QNyW/KxtqJUWBI+8ypamSrQ==}
+  /@sveltejs/vite-plugin-svelte/2.0.0_svelte@3.54.0+vite@3.2.5:
+    resolution: {integrity: sha512-oUFrYQarRv4fppmxdrv00qw3wX8Ycdj0uv33MfpRZyR8K67dyxiOcHnqkB0zSy5sDJA8RC/2aNtYhXJ8NINVHQ==}
     engines: {node: ^14.18.0 || >= 16}
     peerDependencies:
-      diff-match-patch: ^1.0.5
-      svelte: ^3.44.0
-      vite: ^3.0.0
-    peerDependenciesMeta:
-      diff-match-patch:
-        optional: true
+      svelte: ^3.54.0
+      vite: ^4.0.0
     dependencies:
       debug: 4.3.4
       deepmerge: 4.2.2
       kleur: 4.1.5
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       svelte: 3.54.0
       svelte-hmr: 0.15.1_svelte@3.54.0
       vite: 3.2.5
@@ -1175,6 +1171,10 @@ packages:
       - supports-color
     dev: true
 
+  /esm-env/1.0.0:
+    resolution: {integrity: sha512-Cf6VksWPsTuW01vU9Mk/3vRue91Zevka5SjyNf3nEpokFRuqt/KjUQoGAwq9qMmhpLTHmXzSIrFRw8zxWzmFBA==}
+    dev: true
+
   /espree/9.4.0:
     resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1633,13 +1633,6 @@ packages:
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-    dependencies:
-      sourcemap-codec: 1.4.8
-    dev: true
-
-  /magic-string/0.26.7:
-    resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
-    engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
