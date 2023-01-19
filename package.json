@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-static": "1.0.5",
 		"@sveltejs/kit": "1.1.4",
-		"@tauri-apps/cli": "1.2.2",
+		"@tauri-apps/cli": "1.2.3",
 		"@typescript-eslint/eslint-plugin": "5.48.2",
 		"@typescript-eslint/parser": "5.48.2",
 		"covector": "0.8.0",
