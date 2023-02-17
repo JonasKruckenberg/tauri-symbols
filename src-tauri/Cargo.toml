@@ -21,7 +21,7 @@ fst = { version = "0.4.7" }
 regex-automata = { version = "0.2.0", features = [ "transducer" ] }
 serde = { version = "1.0.150", features = [ "derive" ] }
 thiserror = "1.0.37"
-cached = { version = "0.40.0", default-features = false, features = [ "proc_macro" ] }
+cached = { version = "0.42.0", default-features = false, features = [ "proc_macro" ] }
 
 [features]
 default = [ "custom-protocol" ]
