@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@sveltejs/adapter-static': 1.0.6
-  '@sveltejs/kit': 1.7.0
+  '@sveltejs/kit': 1.7.1
   '@tauri-apps/api': 1.2.0
   '@tauri-apps/cli': 1.2.3
   '@typescript-eslint/eslint-plugin': 5.52.0
@@ -26,8 +26,8 @@ dependencies:
   sveltekit-i18n: 2.2.2_svelte@3.55.1
 
 devDependencies:
-  '@sveltejs/adapter-static': 1.0.6_@sveltejs+kit@1.7.0
-  '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@3.2.5
+  '@sveltejs/adapter-static': 1.0.6_@sveltejs+kit@1.7.1
+  '@sveltejs/kit': 1.7.1_svelte@3.55.1+vite@3.2.5
   '@tauri-apps/cli': 1.2.3
   '@typescript-eslint/eslint-plugin': 5.52.0_6cfvjsbua5ptj65675bqcn6oza
   '@typescript-eslint/parser': 5.52.0_7kw3g6rralp5ps6mg3uyzz6azm
@@ -270,16 +270,16 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@sveltejs/adapter-static/1.0.6_@sveltejs+kit@1.7.0:
+  /@sveltejs/adapter-static/1.0.6_@sveltejs+kit@1.7.1:
     resolution: {integrity: sha512-gTus2jW6bEQAZoT1MdmPHWZZmcb6dfLWc0r6dFHnbzSDZ68kifqQ1E+dZDOMF7aXeRV91sgnPuAn2MtpinVdlA==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@3.2.5
+      '@sveltejs/kit': 1.7.1_svelte@3.55.1+vite@3.2.5
     dev: true
 
-  /@sveltejs/kit/1.7.0_svelte@3.55.1+vite@3.2.5:
-    resolution: {integrity: sha512-Pxrf56vJEaWM64L26gEz3A9C1I4TOoERcxw04CImNR5Mcf6UGTITnEx9T8xGgqrZKhftl25izbxXinoKPFDTYw==}
+  /@sveltejs/kit/1.7.1_svelte@3.55.1+vite@3.2.5:
+    resolution: {integrity: sha512-epaQCaZ/D3Qr/SgrRKHv+MpM6rz8JdaXSjOjas8t7PbDJl88KpqYWUvsmyuJQn/yNNGar23kENyy4NueNnjIKQ==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -293,14 +293,14 @@ packages:
       devalue: 4.2.3
       esm-env: 1.0.0
       kleur: 4.1.5
-      magic-string: 0.27.0
+      magic-string: 0.29.0
       mime: 3.0.0
       sade: 1.8.1
       set-cookie-parser: 2.5.1
       sirv: 2.0.2
       svelte: 3.55.1
       tiny-glob: 0.2.9
-      undici: 5.18.0
+      undici: 5.19.1
       vite: 3.2.5
     transitivePeerDependencies:
       - supports-color
@@ -1725,6 +1725,13 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
+  /magic-string/0.29.0:
+    resolution: {integrity: sha512-WcfidHrDjMY+eLjlU+8OvwREqHwpgCeKVBUpQ3OhYYuvfaYCUgcbuBzappNzZvg/v8onU3oQj+BYpkOJe9Iw4Q==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.14
+    dev: true
+
   /mdast-util-from-markdown/0.8.5:
     resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
     dependencies:
@@ -2529,8 +2536,8 @@ packages:
     hasBin: true
     dev: true
 
-  /undici/5.18.0:
-    resolution: {integrity: sha512-1iVwbhonhFytNdg0P4PqyIAXbdlVZVebtPDvuM36m66mRw4OGrCm2MYynJv/UENFLdP13J1nPVQzVE2zTs1OeA==}
+  /undici/5.19.1:
+    resolution: {integrity: sha512-YiZ61LPIgY73E7syxCDxxa3LV2yl3sN8spnIuTct60boiiRaE1J8mNWHO8Im2Zi/sFrPusjLlmRPrsyraSqX6A==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
